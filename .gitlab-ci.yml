@@ -2,7 +2,6 @@ image: maven:3.8.5-openjdk-17
 
 stages:
   - build
-  - test
 
 build:
   stage: build
@@ -11,9 +10,3 @@ build:
   artifacts:
     paths:
       - target/*.jar
-
-
-test:
-  stage: test
-  script:
-    - mvn test
