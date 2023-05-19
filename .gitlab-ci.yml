@@ -8,6 +8,10 @@ build:
   stage: build
   script:
     - mvn clean package
+  artifacts:
+    paths:
+      - target/*.jar
+
 
 test:
   stage: test
