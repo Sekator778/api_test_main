@@ -4,6 +4,9 @@ stages:
   - build
   - deploy
 
+variables:
+  VERSION: $(xmlstarlet sel -t -v "/project/version" pom.xml)
+
 build:
   stage: build
   script:
@@ -17,4 +20,4 @@ deploy:
   image: python:latest
   script:
     - pip install awscli
-    - aws s3 cp target/*.jar s3://terraform777/
+    - aws s3 cp target/*.jar "s3://terraform777/${VERSION}/"
