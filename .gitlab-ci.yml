@@ -1,11 +1,6 @@
-image: maven:3.8.5-openjdk-17
-
 stages:
   - build
   - deploy
-
-variables:
-  VERSION: $(xmlstarlet sel -t -v "/project/version" pom.xml)
 
 build:
   stage: build
@@ -20,4 +15,4 @@ deploy:
   image: python:latest
   script:
     - pip install awscli
-    - aws s3 cp target/*.jar "s3://terraform777/${VERSION}/"
+    - aws s3 cp target/*.jar s3://terraform777/
