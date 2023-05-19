@@ -18,3 +18,5 @@ deploy:
   script:
     - pip install awscli
     - aws s3 cp target/*.jar s3://terraform777/
+  tags:
+    - api
