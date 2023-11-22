@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+    <appender name="AMQP" class="org.springframework.amqp.rabbit.logback.AmqpAppender">
+        <layout>
+            <pattern><![CDATA[ %d %p %t [%c] - <%m>%n ]]></pattern>
+        </layout>
+        <exchangeName>my-exchange</exchangeName>
+        <host>localhost</host>
+        <port>5672</port>
+        <username>guest</username>
+        <password>guest</password>
+        <exchangeType>queue</exchangeType>
+        <applicationId>AmqpAppenderTest</applicationId>
+        <routingKeyPattern>logs-test</routingKeyPattern>
+        <generateId>true</generateId>
+        <charset>UTF-8</charset>
+        <durable>false</durable>
+        <deliveryMode>NON_PERSISTENT</deliveryMode>
+    </appender>
+<!--    to console-->
+    <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <pattern>%d{HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n</pattern>
+        </encoder>
+    </appender>
+
+    <root level="info">
+        <appender-ref ref="AMQP" />
+        <appender-ref ref="STDOUT" />
+    </root>
+</configuration>
